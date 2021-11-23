@@ -16,7 +16,14 @@ namespace AIS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            FormLogin formLogin = new FormLogin();
+            Application.Run(formLogin);
+            //different forms for different users?
+            if (formLogin.UserId != 0)
+            {
+                FormHome formHome = new FormHome(formLogin.UserId, formLogin.UserType);
+                Application.Run(formHome);
+            }
         }
     }
 }

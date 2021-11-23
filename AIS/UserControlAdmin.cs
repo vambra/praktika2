@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AIS
 {
-    public partial class Form1 : Form
+    public partial class UserControlAdmin : UserControl
     {
-        public Form1()
+        public UserControlAdmin(int studentId)
         {
             InitializeComponent();
         }
