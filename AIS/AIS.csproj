@@ -143,6 +143,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControlLecturer.resx">
+      <DependentUpon>UserControlLecturer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlStudent.resx">
       <DependentUpon>UserControlStudent.cs</DependentUpon>
     </EmbeddedResource>

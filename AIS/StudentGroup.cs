@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,9 +47,16 @@ namespace AIS
                     this.CloseConnection();
                 }
             }
-            catch (Exception ex)
+            catch (MySqlException ex1)
             {
-                MessageBox.Show(ex.Message);
+                if (ex1.Number == 0)
+                    MessageBox.Show("Negalima prisijunti prie serverio.");
+                this.CloseConnection();
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                this.CloseConnection();
             }
         }
         public int GetSemesterCount()
@@ -72,10 +80,79 @@ namespace AIS
                 else
                     return 0;
             }
-            catch(Exception ex)
+            catch (MySqlException ex1)
             {
-                MessageBox.Show(ex.Message);
+                if (ex1.Number == 0)
+                    MessageBox.Show("Negalima prisijunti prie serverio.");
+                this.CloseConnection();
                 return 0;
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                this.CloseConnection();
+                return 0;
+            }
+        }
+        public DataTable GetGroups()
+        {
+            try
+            {
+                if (this.OpenConnection())
+                {
+                    string query = "SELECT id, pavadinimas, stojimo_metai, studiju_programos_id FROM grupe;";
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    this.CloseConnection();
+                    return table;
+                }
+                else
+                    return null;
+            }
+            catch (MySqlException ex1)
+            {
+                if (ex1.Number == 0)
+                    MessageBox.Show("Negalima prisijunti prie serverio.");
+                this.CloseConnection();
+                return null;
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                this.CloseConnection();
+                return null;
+            }
+        }
+        public DataTable GetGroupsByID(int LecturerId)
+        {
+            try
+            {
+                if (this.OpenConnection())
+                {
+                    string query = "SELECT DISTINCT grupe.pavadinimas FROM grupe, grupes_dalykas, destytojas " +
+                                   "WHERE grupes_dalykas.grupes_id = grupe.id AND grupes_dalykas.destytojo_id = '" + LecturerId + "';";
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    this.CloseConnection();
+                    return table;
+                }
+                else
+                    return null;
+            }
+            catch (MySqlException ex1)
+            {
+                if (ex1.Number == 0)
+                    MessageBox.Show("Negalima prisijunti prie serverio.");
+                this.CloseConnection();
+                return null;
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                this.CloseConnection();
+                return null;
             }
         }
     }

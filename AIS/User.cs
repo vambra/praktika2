@@ -45,9 +45,17 @@ namespace AIS
                 }
                 return false;
             }
-            catch (Exception ex)
+            catch (MySqlException ex1)
             {
-                MessageBox.Show(ex.Message);
+                if (ex1.Number == 0)
+                    MessageBox.Show("Negalima prisijunti prie serverio.");
+                this.CloseConnection();
+                return false;
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                this.CloseConnection();
                 return false;
             }
         }
@@ -56,7 +64,7 @@ namespace AIS
         {
             return id;
         }
-        public string GetType()
+        public string GetUserType()
         {
             return type;
         }

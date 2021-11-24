@@ -71,10 +71,5 @@ namespace AIS
                 return false;
             }
         }
-
-        //public abstract void DBread();
-        //public abstract void DBinsert();
-        //public abstract void DBupdate();
-        //public abstract void DBdelete();
     }
 }

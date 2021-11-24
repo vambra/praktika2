@@ -28,7 +28,7 @@ namespace AIS
                 if (user.Login(textBoxLoginName.Text, textBoxPassword.Text))
                 {
                     UserId = user.GetId();
-                    UserType = user.GetType();
+                    UserType = user.GetUserType();
                     this.Close();
                 }
                 else

@@ -41,9 +41,16 @@ namespace AIS
                     this.CloseConnection();
                 }
             }
-            catch (Exception ex)
+            catch (MySqlException ex1)
             {
-                MessageBox.Show(ex.Message);
+                if (ex1.Number == 0)
+                    MessageBox.Show("Negalima prisijunti prie serverio.");
+                this.CloseConnection();
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                this.CloseConnection();
             }
         }
 
@@ -66,13 +73,52 @@ namespace AIS
                 }
                 return null;
             }
-            catch (Exception ex)
+            catch (MySqlException ex1)
             {
-                MessageBox.Show(ex.Message);
+                if (ex1.Number == 0)
+                    MessageBox.Show("Negalima prisijunti prie serverio.");
+                this.CloseConnection();
+                return null;
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                this.CloseConnection();
                 return null;
             }
         }
 
-
+        public DataTable GetStudentsByID(int LecturerId)
+        {
+            try
+            {
+                if (this.OpenConnection())
+                {
+                    string query = "SELECT DISTINCT CONCAT(studentas.pavarde, ' ', studentas.vardas) AS vardas " +
+                                   "FROM studentas, grupes_dalykas, destytojas " +
+                                   "WHERE grupes_dalykas.grupes_id = studentas.grupes_id AND grupes_dalykas.destytojo_id = '" + LecturerId + "';";
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    this.CloseConnection();
+                    return table;
+                }
+                else
+                    return null;
+            }
+            catch (MySqlException ex1)
+            {
+                if (ex1.Number == 0)
+                    MessageBox.Show("Negalima prisijunti prie serverio.");
+                this.CloseConnection();
+                return null;
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                this.CloseConnection();
+                return null;
+            }
+        }
     }
 }
