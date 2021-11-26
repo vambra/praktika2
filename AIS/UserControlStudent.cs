@@ -33,30 +33,16 @@ namespace AIS
                 labelGroupName.Text = userGroup.GetName();
 
                 //load semesters
+                dataGridViewSemester.DataSource = user.GetSemesters();
+                dataGridViewSemester.Rows[0].Selected = true;
                 dataGridViewSemester.RowHeadersVisible = false;
                 dataGridViewSemester.ColumnHeadersVisible = false;
-                dataGridViewSemester.ColumnCount = 2;
-                dataGridViewSemester.Columns[0].Visible = false;
-                dataGridViewSemester.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                int year = userGroup.GetStartYear();
-                for (int i = 1; i <= userGroup.GetSemesterCount(); i++)
-                {
-                    int rowId = dataGridViewSemester.Rows.Add();
-                    DataGridViewRow row = dataGridViewSemester.Rows[rowId];
-                    row.Cells[0].Value = i;
-                    row.Cells[1].Value = i + " semestras (" + year + " / " + (year + 1) + " m. m.)";
-                    if (i % 2 == 0)
-                        year++;
-                }
+                dataGridViewSemester.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 //load grades
-                dataGridViewSemester.Rows[0].Selected = true;
-                int selected = int.Parse(dataGridViewSemester.Rows[0].Cells[0].Value.ToString());
-                dataGridViewGrades.DataSource = user.GetGrades(selected);
+                dataGridViewGrades.DataSource = user.GetGrades("");
+                dataGridViewGrades.Columns[0].Visible = false;
                 dataGridViewGrades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataGridViewGrades.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                //dataGridViewGrades.DefaultCellStyle.SelectionBackColor = dataGridViewGrades.DefaultCellStyle.BackColor;
-                //dataGridViewGrades.DefaultCellStyle.SelectionForeColor = dataGridViewGrades.DefaultCellStyle.ForeColor;
                 dataGridViewGrades.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewGrades.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewGrades.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -71,7 +57,7 @@ namespace AIS
         {
             try
             {
-                int selected = int.Parse(dataGridViewSemester.Rows[e.RowIndex].Cells[0].Value.ToString());
+                string selected = dataGridViewSemester.Rows[e.RowIndex].Cells[0].Value.ToString();
                 dataGridViewGrades.DataSource = user.GetGrades(selected);
             }
             catch (Exception ex)

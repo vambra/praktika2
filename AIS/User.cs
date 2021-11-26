@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,8 @@ namespace AIS
             {
                 if (ex1.Number == 0)
                     MessageBox.Show("Negalima prisijunti prie serverio.");
+                else
+                    MessageBox.Show(ex1.Message);
                 this.CloseConnection();
                 return false;
             }
@@ -59,7 +62,6 @@ namespace AIS
                 return false;
             }
         }
-
         public int GetId()
         {
             return id;
@@ -67,6 +69,20 @@ namespace AIS
         public string GetUserType()
         {
             return type;
+        }
+        public DataTable GetAllUserLogins()
+        {
+            string query = "SELECT administratorius.prisijungimo_vardas, administratorius.slaptazodis FROM administratorius " +
+                                   "UNION SELECT destytojas.prisijungimo_vardas, destytojas.slaptazodis FROM destytojas " +
+                                   "UNION SELECT studentas.prisijungimo_vardas, studentas.slaptazodis FROM studentas;";
+            return GetDataTable(query);
+        }
+        public void AddUser(string Name, string Surname, string LoginName, string Password, string UserType)
+        {
+            string query = "INSERT INTO " + UserType + " (vardas, pavarde, grupes_id, prisijungimo_vardas, slaptazodis) " +
+                           "VALUES ('" + Name + "', '" + Surname + "', '" + LoginName + "', '" + Password + "')";
+            if (DatabaseNonQuery(query) > 0)
+                MessageBox.Show("Naudotojas pridėtas");
         }
     }
 }

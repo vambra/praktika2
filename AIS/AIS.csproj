@@ -89,7 +89,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs" />
     <Compile Include="DBconnect.cs" />
     <Compile Include="FormHome.cs">
       <SubType>Form</SubType>
@@ -143,6 +142,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControlAdmin.resx">
+      <DependentUpon>UserControlAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlLecturer.resx">
       <DependentUpon>UserControlLecturer.cs</DependentUpon>
     </EmbeddedResource>

@@ -27,7 +27,7 @@ namespace AIS
                 Subject subject = new Subject();
                 DataTable subjectlist = subject.GetSubjectsById(user.GetId());
                 DataRow dr = subjectlist.NewRow();
-                dr[0] = "Visi dalykai";
+                dr[1] = "Visi dalykai";
                 subjectlist.Rows.InsertAt(dr, 0);
                 comboBoxSubject.DataSource = subjectlist;
                 comboBoxSubject.DisplayMember = "pavadinimas";

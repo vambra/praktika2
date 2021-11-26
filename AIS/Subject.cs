@@ -13,63 +13,33 @@ namespace AIS
     {
         public DataTable GetSubjects()
         {
-            try
-            {
-                if (this.OpenConnection())
-                {
-                    string query = "SELECT id, pavadinimas AS name, kodas AS code FROM dalykas";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    this.CloseConnection();
-                    return table;
-                }
-                return null;
-            }
-            catch (MySqlException ex1)
-            {
-                if (ex1.Number == 0)
-                    MessageBox.Show("Negalima prisijunti prie serverio.");
-                this.CloseConnection();
-                return null;
-            }
-            catch (Exception ex2)
-            {
-                MessageBox.Show(ex2.Message);
-                this.CloseConnection();
-                return null;
-            }
+            string query = "SELECT id, pavadinimas, kodas, CONCAT(kodas, ' | ', pavadinimas) AS display FROM dalykas";
+            return GetDataTable(query);
         }
-
         public DataTable GetSubjectsById(int LecturerId)
         {
-            try
-            {
-                if (this.OpenConnection())
-                {
-                    string query = "SELECT dalykas.pavadinimas FROM dalykas, destytojo_dalykas " +
+            string query = "SELECT dalykas.id, dalykas.pavadinimas FROM dalykas, destytojo_dalykas " +
                            "WHERE dalykas.id = destytojo_dalykas.dalyko_id AND destytojo_dalykas.destytojo_id = '" + LecturerId + "';";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    this.CloseConnection();
-                    return table;
-                }
-                return null;
-            }
-            catch (MySqlException ex1)
-            {
-                if (ex1.Number == 0)
-                    MessageBox.Show("Negalima prisijunti prie serverio.");
-                this.CloseConnection();
-                return null;
-            }
-            catch (Exception ex2)
-            {
-                MessageBox.Show(ex2.Message);
-                this.CloseConnection();
-                return null;
-            }
+            return GetDataTable(query);
+        }
+        public DataTable GetSubjectsByIdOpposite(int LecturerId)
+        {
+            string query = "SELECT DISTINCT dalykas.id, dalykas.pavadinimas FROM dalykas, destytojo_dalykas " +
+                           "WHERE dalykas.id NOT IN (SELECT dalykas.id FROM dalykas, destytojo_dalykas WHERE dalykas.id = destytojo_dalykas.dalyko_id " +
+                           "AND destytojo_dalykas.destytojo_id = '" + LecturerId + "')";
+            return GetDataTable(query);
+        }
+        public void AddSubject(string Name, string Code)
+        {
+            string query = "INSERT INTO dalykas (pavadinimas, kodas) VALUES ('" + Name + "', '" + Code + "')";
+            if (DatabaseNonQuery(query) > 0)
+                MessageBox.Show("Dalykas pridėtas");
+        }
+        public void DeleteSubject(int Id)
+        {
+            string query = "DELETE FROM dalykas WHERE id = '" + Id + "'";
+            if (DatabaseNonQuery(query) > 0)
+                MessageBox.Show("Dalykas ištrintas");
         }
     }
 }

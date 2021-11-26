@@ -131,7 +131,7 @@ namespace AIS
             this.dataGridViewGrades.RowHeadersWidth = 51;
             this.dataGridViewGrades.RowTemplate.Height = 24;
             this.dataGridViewGrades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewGrades.Size = new System.Drawing.Size(497, 336);
+            this.dataGridViewGrades.Size = new System.Drawing.Size(688, 336);
             this.dataGridViewGrades.TabIndex = 7;
             // 
             // UserControlStudent
@@ -147,7 +147,7 @@ namespace AIS
             this.Controls.Add(this.labelFullName);
             this.Controls.Add(this.label1);
             this.Name = "UserControlStudent";
-            this.Size = new System.Drawing.Size(746, 450);
+            this.Size = new System.Drawing.Size(937, 450);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSemester)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGrades)).EndInit();
             this.ResumeLayout(false);

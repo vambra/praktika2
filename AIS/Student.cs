@@ -20,7 +20,6 @@ namespace AIS
         public string GetSurname() { return surname; }
         public int GetGroupId() { return groupId; }
 
-
         public void SetProfile(int StudentId)
         {
             try
@@ -45,6 +44,8 @@ namespace AIS
             {
                 if (ex1.Number == 0)
                     MessageBox.Show("Negalima prisijunti prie serverio.");
+                else
+                    MessageBox.Show(ex1.Message);
                 this.CloseConnection();
             }
             catch (Exception ex2)
@@ -54,71 +55,35 @@ namespace AIS
             }
         }
 
-        public DataTable GetGrades(int semester)
+        public DataTable GetGrades(string semester)
         {
-            try
-            {
-                if(this.OpenConnection())
-                {
-                    string query = "SELECT dalykas.kodas AS `Kodas`, dalykas.pavadinimas AS `Dalyko pavadinimas`, pazymys.ivertinimas AS `Įvertinimas` " +
-                                   "FROM dalykas, pazymys, grupes_dalykas, studentas " +
-                                   "WHERE pazymys.studento_id = studentas.id AND pazymys.grupes_dalyko_id = grupes_dalykas.id AND grupes_dalykas.dalyko_id = dalykas.id AND " +
-                                   "studentas.id = '" + id + "' AND " +
-                                   "grupes_dalykas.semestras = '" + semester + "';";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    this.CloseConnection();
-                    return table;
-                }
-                return null;
-            }
-            catch (MySqlException ex1)
-            {
-                if (ex1.Number == 0)
-                    MessageBox.Show("Negalima prisijunti prie serverio.");
-                this.CloseConnection();
-                return null;
-            }
-            catch (Exception ex2)
-            {
-                MessageBox.Show(ex2.Message);
-                this.CloseConnection();
-                return null;
-            }
+            string query = "SELECT CONCAT(FLOOR(grupe.stojimo_metai + (grupes_dalykas.semestras / 2) - 0.5), ' - ', " +
+                                   "FLOOR(grupe.stojimo_metai + (grupes_dalykas.semestras / 2) - 0.5) + 1, ' m. m., ', grupes_dalykas.semestras, ' semestras') AS metai, " +
+                                   "studiju_programa.pavadinimas AS 'studijų programa', grupe.pavadinimas AS grupė, dalykas.kodas, dalykas.pavadinimas AS dalykas, " +
+                                   "pazymys.ivertinimas AS įvertinimas " +
+                                   "FROM grupe, grupes_dalykas, dalykas, pazymys, studiju_programa " +
+                                   "WHERE pazymys.grupes_dalyko_id = grupes_dalykas.id AND grupes_dalykas.grupes_id = grupe.id AND grupes_dalykas.dalyko_id = dalykas.id " +
+                                   "AND studiju_programa.id = grupe.studiju_programos_id AND pazymys.studento_id = '" + id + "'";
+            if (semester != "")
+                query += " AND CONCAT(FLOOR(grupe.stojimo_metai + (grupes_dalykas.semestras / 2) - 0.5), ' - ', " +
+                         "FLOOR(grupe.stojimo_metai + (grupes_dalykas.semestras / 2) - 0.5) + 1, ' m. m., ', grupes_dalykas.semestras, ' semestras') = '" +
+                         semester + "'";
+            return GetDataTable(query);
         }
-
+        public DataTable GetSemesters()
+        {
+            string query = "SELECT DISTINCT CONCAT(FLOOR(grupe.stojimo_metai + (grupes_dalykas.semestras / 2) - 0.5), ' - ', " +
+                                   "FLOOR(grupe.stojimo_metai + (grupes_dalykas.semestras / 2) - 0.5) + 1, ' m. m., ', grupes_dalykas.semestras, ' semestras') AS metai " +
+                                   "FROM grupe, grupes_dalykas, pazymys WHERE pazymys.grupes_dalyko_id = grupes_dalykas.id AND grupes_dalykas.grupes_id = grupe.id " +
+                                   "AND pazymys.studento_id = '" + id + "'";
+            return GetDataTable(query);
+        }
         public DataTable GetStudentsByID(int LecturerId)
         {
-            try
-            {
-                if (this.OpenConnection())
-                {
-                    string query = "SELECT DISTINCT CONCAT(studentas.pavarde, ' ', studentas.vardas) AS vardas " +
+            string query = "SELECT DISTINCT CONCAT(studentas.pavarde, ' ', studentas.vardas) AS vardas " +
                                    "FROM studentas, grupes_dalykas, destytojas " +
                                    "WHERE grupes_dalykas.grupes_id = studentas.grupes_id AND grupes_dalykas.destytojo_id = '" + LecturerId + "';";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    this.CloseConnection();
-                    return table;
-                }
-                else
-                    return null;
-            }
-            catch (MySqlException ex1)
-            {
-                if (ex1.Number == 0)
-                    MessageBox.Show("Negalima prisijunti prie serverio.");
-                this.CloseConnection();
-                return null;
-            }
-            catch (Exception ex2)
-            {
-                MessageBox.Show(ex2.Message);
-                this.CloseConnection();
-                return null;
-            }
+            return GetDataTable(query);
         }
     }
 }
