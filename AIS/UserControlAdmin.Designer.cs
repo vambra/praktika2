@@ -614,7 +614,7 @@ namespace AIS
             this.groupBox5.Size = new System.Drawing.Size(865, 200);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Naujas vartotojas";
+            this.groupBox5.Text = "Naujas naudotojas";
             // 
             // label19
             // 
@@ -659,9 +659,9 @@ namespace AIS
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(439, 42);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(101, 17);
+            this.label12.Size = new System.Drawing.Size(109, 17);
             this.label12.TabIndex = 7;
-            this.label12.Text = "vartotojo tipas:";
+            this.label12.Text = "naudotojo tipas:";
             // 
             // label11
             // 

@@ -44,6 +44,7 @@ namespace AIS
                 dataGridViewGrades.DataSource = user.GetGrades(selected);
                 dataGridViewGrades.Columns[0].Visible = false;
                 dataGridViewGrades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridViewGrades.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             catch (Exception ex)
             {

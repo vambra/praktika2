@@ -19,18 +19,14 @@ namespace AIS
             if (UserType == "admin")
                 userControl = new UserControlAdmin(UserId);
             if (UserType == "lecturer")
-            {
                 userControl = new UserControlLecturer(UserId);
-                this.Size = new Size(685, 440);
-            }
             if (UserType == "student")
-            {
                 userControl = new UserControlStudent(UserId);
-                this.Size = new Size(685, 440);
-            }
             panel1.Dock = DockStyle.Fill;
             userControl.Dock = DockStyle.Fill;
             panel1.Controls.Add(userControl);
+            if (UserType == "lecturer" || UserType == "student")
+                this.Size = new Size(685, 440);
         }
     }
 }
