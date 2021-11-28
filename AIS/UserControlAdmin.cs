@@ -169,6 +169,7 @@ namespace AIS
             dataGridViewStudentToGroup.DataSource = student.GetStudentsByGroup(groupId);
             dataGridViewStudentToGroup.Columns["display"].Visible = false;
             dataGridViewStudentToGroup.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewStudentToGroup.Columns["fakultetas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
         private void LoadGroupSubjects()
         {
