@@ -16,15 +16,19 @@ namespace AIS
             string query = "SELECT id, pavadinimas, kodas, CONCAT(kodas, ' | ', pavadinimas) AS display FROM dalykas";
             return GetDataTable(query);
         }
-        public DataTable GetSubjectsById(int LecturerId)
+        public DataTable GetSubjectsByLecturer(int LecturerId)
         {
-            string query = "SELECT dalykas.id, dalykas.pavadinimas FROM dalykas, destytojo_dalykas " +
-                           "WHERE dalykas.id = destytojo_dalykas.dalyko_id AND destytojo_dalykas.destytojo_id = '" + LecturerId + "';";
+            string query = "SELECT dalykas.id, dalykas.kodas, dalykas.pavadinimas, CONCAT(dalykas.kodas, ' | ', dalykas.pavadinimas) AS dalykas, " +
+                           "destytojas.id AS 'destytojo id', CONCAT(destytojas.pavarde, ' ', destytojas.vardas) AS destytojas " +
+                           "FROM dalykas, destytojo_dalykas, destytojas " +
+                           "WHERE dalykas.id = destytojo_dalykas.dalyko_id AND destytojas.id = destytojo_dalykas.destytojo_id";
+            if (LecturerId != 0)
+                query += " AND destytojas.id = '" + LecturerId + "'";
             return GetDataTable(query);
         }
-        public DataTable GetSubjectsByIdOpposite(int LecturerId)
+        public DataTable GetSubjectsByLecturerOpposite(int LecturerId)
         {
-            string query = "SELECT DISTINCT dalykas.id, dalykas.pavadinimas FROM dalykas, destytojo_dalykas " +
+            string query = "SELECT DISTINCT dalykas.id, CONCAT(dalykas.kodas, ' | ', dalykas.pavadinimas) AS dalykas FROM dalykas, destytojo_dalykas " +
                            "WHERE dalykas.id NOT IN (SELECT dalykas.id FROM dalykas, destytojo_dalykas WHERE dalykas.id = destytojo_dalykas.dalyko_id " +
                            "AND destytojo_dalykas.destytojo_id = '" + LecturerId + "')";
             return GetDataTable(query);

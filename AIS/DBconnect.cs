@@ -37,15 +37,15 @@ namespace AIS
                 connection.Open();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (MySqlException ex1)
             {
-                switch (ex.Number)
+                switch (ex1.Number)
                 {
                     case 0:
                         MessageBox.Show("Nepavyko prisijungti prie serverio");
                         break;
                     default:
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show("MySqlException " + ex1.Number + ": " + ex1.Message);
                         break;
                 }
                 return false;
@@ -84,8 +84,19 @@ namespace AIS
             }
             catch (MySqlException ex1)
             {
-                if (ex1.Number != 0)
-                    MessageBox.Show(ex1.Message);
+                switch (ex1.Number)
+                {
+                    case 0:
+                        break;
+                    case 1062:
+                        break;
+                    case 1451:
+                        MessageBox.Show("Įrašui, kurį bandote ištrinti, priklauso kiti įrašai. Prašome pirmiau ištrinti ar atskirti šiuos įrašus.");
+                        break;
+                    default:
+                        MessageBox.Show("MySqlException " + ex1.Number + ": " + ex1.Message);
+                        break;
+                }
                 this.CloseConnection();
                 return null;
             }
@@ -111,8 +122,19 @@ namespace AIS
             }
             catch (MySqlException ex1)
             {
-                if (ex1.Number != 0)
-                    MessageBox.Show(ex1.Message);
+                switch (ex1.Number)
+                {
+                    case 0:
+                        break;
+                    case 1062:
+                        break;
+                    case 1451:
+                        MessageBox.Show("Įrašui, kurį bandote ištrinti, priklauso kiti įrašai. Prašome pirmiau ištrinti ar atskirti šiuos įrašus.");
+                        break;
+                    default:
+                        MessageBox.Show("MySqlException " + ex1.Number + ": " + ex1.Message);
+                        break;
+                }
                 this.CloseConnection();
                 return 0;
             }

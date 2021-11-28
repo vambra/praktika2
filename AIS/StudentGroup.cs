@@ -61,9 +61,9 @@ namespace AIS
             string query = "SELECT id, pavadinimas, stojimo_metai, studiju_programos_id FROM grupe;";
             return GetDataTable(query);
         }
-        public DataTable GetGroupsByID(int LecturerId)
+        public DataTable GetGroupsByLecturer(int LecturerId)
         {
-            string query = "SELECT DISTINCT grupe.pavadinimas FROM grupe, grupes_dalykas, destytojas " +
+            string query = "SELECT DISTINCT grupe.id, grupe.pavadinimas FROM grupe, grupes_dalykas, destytojas " +
                            "WHERE grupes_dalykas.grupes_id = grupe.id AND grupes_dalykas.destytojo_id = '" + LecturerId + "';";
             return GetDataTable(query);
         }
@@ -112,6 +112,44 @@ namespace AIS
             string query = "DELETE FROM grupe WHERE id = '" + Id + "'";
             if (DatabaseNonQuery(query) > 0)
                 MessageBox.Show("Grupė ištrinta");
+        }
+        public void SetSubject(int SubjectId, int GroupId, int LecturerId, int Semester)
+        {
+            string query = "INSERT INTO grupes_dalykas (grupes_dalykas.grupes_id, grupes_dalykas.dalyko_id, grupes_dalykas.destytojo_id, grupes_dalykas.semestras) " +
+                           "VALUES ('" + GroupId + "', '" + SubjectId + "', '" + LecturerId + "', '" + Semester + "'); " +
+                           "SELECT grupes_dalykas.id FROM grupes_dalykas WHERE grupes_dalykas.id = @@Identity;";
+            DataTable temp = GetDataTable(query);
+            if (temp != null)
+            {
+                int groupSubjectId = int.Parse(temp.Rows[0][0].ToString());
+                Student student = new Student();
+                DataTable studentList = student.GetStudentsByGroup(GroupId);
+                for (int i = 0; i < studentList.Rows.Count; i++)
+                {
+                    string studentId = studentList.Rows[i]["studento id"].ToString();
+                    query = "INSERT INTO pazymys(pazymys.studento_id, pazymys.grupes_dalyko_id) VALUES('" + studentId + "', '" + groupSubjectId + "')";
+                    DatabaseNonQuery(query);
+                }
+                MessageBox.Show("Dalykas pridėtas");
+            }
+            else
+            {
+                MessageBox.Show("Dalykas jau yra pridėtas");
+            }
+        }
+        public DataTable GetGroupSubjects(int GroupId, int SubjectId)
+        {
+            string query = "SELECT grupes_dalykas.id, fakultetas.pavadinimas AS fakultetas, studiju_programa.pavadinimas AS 'studiju programa', " +
+                           "grupe.pavadinimas AS 'grupe', dalykas.kodas AS 'dalyko kodas', dalykas.pavadinimas AS 'dalykas', destytojas.id AS 'destytojo id', " +
+                           "CONCAT(destytojas.pavarde, ' ', destytojas.vardas) AS destytojas, grupes_dalykas.semestras " +
+                           "FROM grupes_dalykas, fakultetas, studiju_programa, grupe, destytojas, dalykas WHERE fakultetas.id = studiju_programa.fakulteto_id " +
+                           "AND studiju_programa.id = grupe.studiju_programos_id AND grupes_dalykas.grupes_id = grupe.id AND grupes_dalykas.dalyko_id = dalykas.id " +
+                           "AND grupes_dalykas.destytojo_id = destytojas.id";
+            if (GroupId != 0)
+                query += " AND grupe.id = '" + GroupId + "'";
+            if (SubjectId != 0)
+                query += " AND dalykas.id = '" + SubjectId + "'";
+            return GetDataTable(query);
         }
     }
 }

@@ -39,6 +39,15 @@ namespace AIS
             this.buttonSubjectAdd = new System.Windows.Forms.Button();
             this.comboBoxSubject = new System.Windows.Forms.ComboBox();
             this.textBoxSubjectName = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.dataGridViewLecturerToSubject = new System.Windows.Forms.DataGridView();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBox1Lecturer = new System.Windows.Forms.ComboBox();
+            this.comboBox1SubjectAdd = new System.Windows.Forms.ComboBox();
+            this.comboBox1SubjectDelete = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.button1SubjectAdd = new System.Windows.Forms.Button();
+            this.button1SubjectDelete = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxGroupProgram = new System.Windows.Forms.ComboBox();
@@ -80,45 +89,41 @@ namespace AIS
             this.textBoxNewUserSurname = new System.Windows.Forms.TextBox();
             this.textBoxNewUserName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3SubjectSet = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox3Semester = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.labelStudentCurrentGroup = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.dataGridViewSubjectToGroup = new System.Windows.Forms.DataGridView();
             this.label20 = new System.Windows.Forms.Label();
             this.comboBox3Group = new System.Windows.Forms.ComboBox();
-            this.dataGridViewSubjectToGroup = new System.Windows.Forms.DataGridView();
-            this.label17 = new System.Windows.Forms.Label();
+            this.comboBox3Subject = new System.Windows.Forms.ComboBox();
+            this.button3SubjectSet = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.comboBox3Lecturer = new System.Windows.Forms.ComboBox();
+            this.textBox3Semester = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.dataGridViewStudentToGroup = new System.Windows.Forms.DataGridView();
             this.label18 = new System.Windows.Forms.Label();
-            this.button2GroupSet = new System.Windows.Forms.Button();
             this.comboBox2Group = new System.Windows.Forms.ComboBox();
             this.comboBox2Student = new System.Windows.Forms.ComboBox();
-            this.dataGridViewStudentToGroup = new System.Windows.Forms.DataGridView();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.button1SubjectDelete = new System.Windows.Forms.Button();
-            this.button1SubjectAdd = new System.Windows.Forms.Button();
-            this.comboBox1SubjectDelete = new System.Windows.Forms.ComboBox();
-            this.comboBox1SubjectAdd = new System.Windows.Forms.ComboBox();
-            this.comboBox1Lecturer = new System.Windows.Forms.ComboBox();
-            this.dataGridViewLecturerToSubject = new System.Windows.Forms.DataGridView();
+            this.labelStudentCurrentGroup = new System.Windows.Forms.Label();
+            this.labelStudentCurrentGroupTitle = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.button2GroupSet = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLecturerToSubject)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSubjectToGroup)).BeginInit();
+            this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudentToGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLecturerToSubject)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -126,22 +131,23 @@ namespace AIS
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(6, 3);
+            this.tabControl1.Location = new System.Drawing.Point(3, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(884, 520);
+            this.tabControl1.Size = new System.Drawing.Size(890, 790);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(876, 491);
+            this.tabPage1.Size = new System.Drawing.Size(882, 761);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tvarkyti duomenis";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -155,9 +161,9 @@ namespace AIS
             this.groupBox4.Controls.Add(this.buttonSubjectAdd);
             this.groupBox4.Controls.Add(this.comboBoxSubject);
             this.groupBox4.Controls.Add(this.textBoxSubjectName);
-            this.groupBox4.Location = new System.Drawing.Point(6, 364);
+            this.groupBox4.Location = new System.Drawing.Point(10, 383);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(864, 120);
+            this.groupBox4.Size = new System.Drawing.Size(865, 120);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Dalykai";
@@ -224,6 +230,107 @@ namespace AIS
             this.textBoxSubjectName.Size = new System.Drawing.Size(544, 22);
             this.textBoxSubjectName.TabIndex = 25;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.dataGridViewLecturerToSubject);
+            this.groupBox6.Controls.Add(this.label15);
+            this.groupBox6.Controls.Add(this.comboBox1Lecturer);
+            this.groupBox6.Controls.Add(this.comboBox1SubjectAdd);
+            this.groupBox6.Controls.Add(this.comboBox1SubjectDelete);
+            this.groupBox6.Controls.Add(this.label16);
+            this.groupBox6.Controls.Add(this.button1SubjectAdd);
+            this.groupBox6.Controls.Add(this.button1SubjectDelete);
+            this.groupBox6.Location = new System.Drawing.Point(6, 509);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(865, 250);
+            this.groupBox6.TabIndex = 31;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Dėstytojų dalykai";
+            // 
+            // dataGridViewLecturerToSubject
+            // 
+            this.dataGridViewLecturerToSubject.AllowUserToAddRows = false;
+            this.dataGridViewLecturerToSubject.AllowUserToDeleteRows = false;
+            this.dataGridViewLecturerToSubject.AllowUserToResizeRows = false;
+            this.dataGridViewLecturerToSubject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLecturerToSubject.Location = new System.Drawing.Point(6, 21);
+            this.dataGridViewLecturerToSubject.Name = "dataGridViewLecturerToSubject";
+            this.dataGridViewLecturerToSubject.ReadOnly = true;
+            this.dataGridViewLecturerToSubject.RowHeadersVisible = false;
+            this.dataGridViewLecturerToSubject.RowHeadersWidth = 51;
+            this.dataGridViewLecturerToSubject.RowTemplate.Height = 24;
+            this.dataGridViewLecturerToSubject.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewLecturerToSubject.Size = new System.Drawing.Size(855, 130);
+            this.dataGridViewLecturerToSubject.TabIndex = 0;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(150, 163);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(76, 17);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "dėstytojas:";
+            // 
+            // comboBox1Lecturer
+            // 
+            this.comboBox1Lecturer.FormattingEnabled = true;
+            this.comboBox1Lecturer.Location = new System.Drawing.Point(153, 183);
+            this.comboBox1Lecturer.Name = "comboBox1Lecturer";
+            this.comboBox1Lecturer.Size = new System.Drawing.Size(221, 24);
+            this.comboBox1Lecturer.TabIndex = 5;
+            this.comboBox1Lecturer.SelectedIndexChanged += new System.EventHandler(this.comboBox1Lecturer_SelectedIndexChanged);
+            this.comboBox1Lecturer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1Lecturer_KeyPress);
+            // 
+            // comboBox1SubjectAdd
+            // 
+            this.comboBox1SubjectAdd.Enabled = false;
+            this.comboBox1SubjectAdd.FormattingEnabled = true;
+            this.comboBox1SubjectAdd.Location = new System.Drawing.Point(387, 183);
+            this.comboBox1SubjectAdd.Name = "comboBox1SubjectAdd";
+            this.comboBox1SubjectAdd.Size = new System.Drawing.Size(371, 24);
+            this.comboBox1SubjectAdd.TabIndex = 6;
+            // 
+            // comboBox1SubjectDelete
+            // 
+            this.comboBox1SubjectDelete.Enabled = false;
+            this.comboBox1SubjectDelete.FormattingEnabled = true;
+            this.comboBox1SubjectDelete.Location = new System.Drawing.Point(387, 213);
+            this.comboBox1SubjectDelete.Name = "comboBox1SubjectDelete";
+            this.comboBox1SubjectDelete.Size = new System.Drawing.Size(371, 24);
+            this.comboBox1SubjectDelete.TabIndex = 7;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(384, 163);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 17);
+            this.label16.TabIndex = 11;
+            this.label16.Text = "dalykas:";
+            // 
+            // button1SubjectAdd
+            // 
+            this.button1SubjectAdd.Enabled = false;
+            this.button1SubjectAdd.Location = new System.Drawing.Point(778, 183);
+            this.button1SubjectAdd.Name = "button1SubjectAdd";
+            this.button1SubjectAdd.Size = new System.Drawing.Size(75, 23);
+            this.button1SubjectAdd.TabIndex = 8;
+            this.button1SubjectAdd.Text = "Pridėti";
+            this.button1SubjectAdd.UseVisualStyleBackColor = true;
+            this.button1SubjectAdd.Click += new System.EventHandler(this.button1SubjectAdd_Click);
+            // 
+            // button1SubjectDelete
+            // 
+            this.button1SubjectDelete.Enabled = false;
+            this.button1SubjectDelete.Location = new System.Drawing.Point(778, 213);
+            this.button1SubjectDelete.Name = "button1SubjectDelete";
+            this.button1SubjectDelete.Size = new System.Drawing.Size(75, 23);
+            this.button1SubjectDelete.TabIndex = 9;
+            this.button1SubjectDelete.Text = "Trinti";
+            this.button1SubjectDelete.UseVisualStyleBackColor = true;
+            this.button1SubjectDelete.Click += new System.EventHandler(this.button1SubjectDelete_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label6);
@@ -235,9 +342,9 @@ namespace AIS
             this.groupBox3.Controls.Add(this.buttonGroupAdd);
             this.groupBox3.Controls.Add(this.textBoxGroupName);
             this.groupBox3.Controls.Add(this.comboBoxGroup);
-            this.groupBox3.Location = new System.Drawing.Point(6, 238);
+            this.groupBox3.Location = new System.Drawing.Point(10, 257);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(864, 120);
+            this.groupBox3.Size = new System.Drawing.Size(865, 120);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Studentų grupės";
@@ -332,9 +439,9 @@ namespace AIS
             this.groupBox2.Controls.Add(this.textBoxProgramName);
             this.groupBox2.Controls.Add(this.buttonProgramAdd);
             this.groupBox2.Controls.Add(this.buttonProgramDelete);
-            this.groupBox2.Location = new System.Drawing.Point(6, 132);
+            this.groupBox2.Location = new System.Drawing.Point(10, 131);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(864, 120);
+            this.groupBox2.Size = new System.Drawing.Size(865, 120);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Studijų programos";
@@ -425,9 +532,9 @@ namespace AIS
             this.groupBox1.Controls.Add(this.textBoxFacultyName);
             this.groupBox1.Controls.Add(this.buttonFacultyDelete);
             this.groupBox1.Controls.Add(this.buttonFacultyAdd);
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Location = new System.Drawing.Point(10, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(864, 120);
+            this.groupBox1.Size = new System.Drawing.Size(865, 120);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fakultetai";
@@ -483,7 +590,7 @@ namespace AIS
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(876, 491);
+            this.tabPage2.Size = new System.Drawing.Size(882, 761);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tvarkyti naudotojus";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -502,9 +609,9 @@ namespace AIS
             this.groupBox5.Controls.Add(this.textBoxNewUserLoginName);
             this.groupBox5.Controls.Add(this.textBoxNewUserSurname);
             this.groupBox5.Controls.Add(this.textBoxNewUserName);
-            this.groupBox5.Location = new System.Drawing.Point(7, 7);
+            this.groupBox5.Location = new System.Drawing.Point(10, 5);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(863, 200);
+            this.groupBox5.Size = new System.Drawing.Size(865, 200);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Naujas vartotojas";
@@ -616,137 +723,54 @@ namespace AIS
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.button3SubjectSet);
-            this.tabPage3.Controls.Add(this.label24);
-            this.tabPage3.Controls.Add(this.textBox3Semester);
-            this.tabPage3.Controls.Add(this.label23);
-            this.tabPage3.Controls.Add(this.comboBox2);
-            this.tabPage3.Controls.Add(this.label22);
-            this.tabPage3.Controls.Add(this.comboBox1);
-            this.tabPage3.Controls.Add(this.labelStudentCurrentGroup);
-            this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Controls.Add(this.label20);
-            this.tabPage3.Controls.Add(this.comboBox3Group);
-            this.tabPage3.Controls.Add(this.dataGridViewSubjectToGroup);
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.button2GroupSet);
-            this.tabPage3.Controls.Add(this.comboBox2Group);
-            this.tabPage3.Controls.Add(this.comboBox2Student);
-            this.tabPage3.Controls.Add(this.dataGridViewStudentToGroup);
-            this.tabPage3.Controls.Add(this.label16);
-            this.tabPage3.Controls.Add(this.label15);
-            this.tabPage3.Controls.Add(this.button1SubjectDelete);
-            this.tabPage3.Controls.Add(this.button1SubjectAdd);
-            this.tabPage3.Controls.Add(this.comboBox1SubjectDelete);
-            this.tabPage3.Controls.Add(this.comboBox1SubjectAdd);
-            this.tabPage3.Controls.Add(this.comboBox1Lecturer);
-            this.tabPage3.Controls.Add(this.dataGridViewLecturerToSubject);
+            this.tabPage3.Controls.Add(this.groupBox8);
+            this.tabPage3.Controls.Add(this.groupBox7);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(876, 491);
+            this.tabPage3.Size = new System.Drawing.Size(882, 761);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tvarkyti studijas";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // groupBox8
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(755, 382);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Trinti";
-            this.button1.UseVisualStyleBackColor = true;
+            this.groupBox8.Controls.Add(this.dataGridViewSubjectToGroup);
+            this.groupBox8.Controls.Add(this.label20);
+            this.groupBox8.Controls.Add(this.comboBox3Group);
+            this.groupBox8.Controls.Add(this.comboBox3Subject);
+            this.groupBox8.Controls.Add(this.button3SubjectSet);
+            this.groupBox8.Controls.Add(this.label22);
+            this.groupBox8.Controls.Add(this.label24);
+            this.groupBox8.Controls.Add(this.comboBox3Lecturer);
+            this.groupBox8.Controls.Add(this.textBox3Semester);
+            this.groupBox8.Controls.Add(this.label23);
+            this.groupBox8.Location = new System.Drawing.Point(7, 379);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(865, 370);
+            this.groupBox8.TabIndex = 33;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Grupių dalykai";
             // 
-            // button3SubjectSet
+            // dataGridViewSubjectToGroup
             // 
-            this.button3SubjectSet.Enabled = false;
-            this.button3SubjectSet.Location = new System.Drawing.Point(755, 353);
-            this.button3SubjectSet.Name = "button3SubjectSet";
-            this.button3SubjectSet.Size = new System.Drawing.Size(75, 23);
-            this.button3SubjectSet.TabIndex = 29;
-            this.button3SubjectSet.Text = "Priskirti";
-            this.button3SubjectSet.UseVisualStyleBackColor = true;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(646, 333);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(77, 17);
-            this.label24.TabIndex = 28;
-            this.label24.Text = "semestras:";
-            // 
-            // textBox3Semester
-            // 
-            this.textBox3Semester.Location = new System.Drawing.Point(649, 353);
-            this.textBox3Semester.MaxLength = 1;
-            this.textBox3Semester.Name = "textBox3Semester";
-            this.textBox3Semester.Size = new System.Drawing.Size(100, 22);
-            this.textBox3Semester.TabIndex = 27;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(519, 333);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(76, 17);
-            this.label23.TabIndex = 26;
-            this.label23.Text = "dėstytojas:";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(522, 353);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 25;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(392, 333);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(60, 17);
-            this.label22.TabIndex = 24;
-            this.label22.Text = "dalykas:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(395, 353);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 23;
-            // 
-            // labelStudentCurrentGroup
-            // 
-            this.labelStudentCurrentGroup.AutoSize = true;
-            this.labelStudentCurrentGroup.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelStudentCurrentGroup.Location = new System.Drawing.Point(562, 227);
-            this.labelStudentCurrentGroup.Name = "labelStudentCurrentGroup";
-            this.labelStudentCurrentGroup.Size = new System.Drawing.Size(53, 17);
-            this.labelStudentCurrentGroup.TabIndex = 22;
-            this.labelStudentCurrentGroup.Text = "[grupė]";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label21.Location = new System.Drawing.Point(439, 227);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(117, 17);
-            this.label21.TabIndex = 21;
-            this.label21.Text = "dabartinė grupė: ";
+            this.dataGridViewSubjectToGroup.AllowUserToAddRows = false;
+            this.dataGridViewSubjectToGroup.AllowUserToDeleteRows = false;
+            this.dataGridViewSubjectToGroup.AllowUserToResizeRows = false;
+            this.dataGridViewSubjectToGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSubjectToGroup.Location = new System.Drawing.Point(6, 21);
+            this.dataGridViewSubjectToGroup.Name = "dataGridViewSubjectToGroup";
+            this.dataGridViewSubjectToGroup.ReadOnly = true;
+            this.dataGridViewSubjectToGroup.RowHeadersVisible = false;
+            this.dataGridViewSubjectToGroup.RowHeadersWidth = 51;
+            this.dataGridViewSubjectToGroup.RowTemplate.Height = 24;
+            this.dataGridViewSubjectToGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewSubjectToGroup.Size = new System.Drawing.Size(855, 250);
+            this.dataGridViewSubjectToGroup.TabIndex = 23;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(265, 333);
+            this.label20.Location = new System.Drawing.Point(38, 282);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(49, 17);
             this.label20.TabIndex = 20;
@@ -755,152 +779,180 @@ namespace AIS
             // comboBox3Group
             // 
             this.comboBox3Group.FormattingEnabled = true;
-            this.comboBox3Group.Location = new System.Drawing.Point(268, 353);
+            this.comboBox3Group.Location = new System.Drawing.Point(41, 302);
             this.comboBox3Group.Name = "comboBox3Group";
             this.comboBox3Group.Size = new System.Drawing.Size(121, 24);
             this.comboBox3Group.TabIndex = 19;
+            this.comboBox3Group.SelectedIndexChanged += new System.EventHandler(this.comboBox3Group_SelectedIndexChanged);
             // 
-            // dataGridViewSubjectToGroup
+            // comboBox3Subject
             // 
-            this.dataGridViewSubjectToGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSubjectToGroup.Location = new System.Drawing.Point(3, 315);
-            this.dataGridViewSubjectToGroup.Name = "dataGridViewSubjectToGroup";
-            this.dataGridViewSubjectToGroup.RowHeadersWidth = 51;
-            this.dataGridViewSubjectToGroup.RowTemplate.Height = 24;
-            this.dataGridViewSubjectToGroup.Size = new System.Drawing.Size(240, 150);
-            this.dataGridViewSubjectToGroup.TabIndex = 18;
+            this.comboBox3Subject.FormattingEnabled = true;
+            this.comboBox3Subject.Location = new System.Drawing.Point(168, 302);
+            this.comboBox3Subject.Name = "comboBox3Subject";
+            this.comboBox3Subject.Size = new System.Drawing.Size(371, 24);
+            this.comboBox3Subject.TabIndex = 23;
+            this.comboBox3Subject.SelectedIndexChanged += new System.EventHandler(this.comboBox3Subject_SelectedIndexChanged);
             // 
-            // label17
+            // button3SubjectSet
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(414, 180);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(49, 17);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "grupė:";
+            this.button3SubjectSet.Enabled = false;
+            this.button3SubjectSet.Location = new System.Drawing.Point(777, 330);
+            this.button3SubjectSet.Name = "button3SubjectSet";
+            this.button3SubjectSet.Size = new System.Drawing.Size(75, 23);
+            this.button3SubjectSet.TabIndex = 29;
+            this.button3SubjectSet.Text = "Priskirti";
+            this.button3SubjectSet.UseVisualStyleBackColor = true;
+            this.button3SubjectSet.Click += new System.EventHandler(this.button3SubjectSet_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(165, 282);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(60, 17);
+            this.label22.TabIndex = 24;
+            this.label22.Text = "dalykas:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(769, 282);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(77, 17);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "semestras:";
+            // 
+            // comboBox3Lecturer
+            // 
+            this.comboBox3Lecturer.Enabled = false;
+            this.comboBox3Lecturer.FormattingEnabled = true;
+            this.comboBox3Lecturer.Location = new System.Drawing.Point(545, 302);
+            this.comboBox3Lecturer.Name = "comboBox3Lecturer";
+            this.comboBox3Lecturer.Size = new System.Drawing.Size(221, 24);
+            this.comboBox3Lecturer.TabIndex = 25;
+            this.comboBox3Lecturer.SelectedIndexChanged += new System.EventHandler(this.comboBox3Lecturer_SelectedIndexChanged);
+            // 
+            // textBox3Semester
+            // 
+            this.textBox3Semester.Location = new System.Drawing.Point(772, 302);
+            this.textBox3Semester.MaxLength = 2;
+            this.textBox3Semester.Name = "textBox3Semester";
+            this.textBox3Semester.Size = new System.Drawing.Size(80, 22);
+            this.textBox3Semester.TabIndex = 27;
+            this.textBox3Semester.TextChanged += new System.EventHandler(this.textBox3Semester_TextChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(542, 282);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(76, 17);
+            this.label23.TabIndex = 26;
+            this.label23.Text = "dėstytojas:";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.dataGridViewStudentToGroup);
+            this.groupBox7.Controls.Add(this.label18);
+            this.groupBox7.Controls.Add(this.comboBox2Group);
+            this.groupBox7.Controls.Add(this.comboBox2Student);
+            this.groupBox7.Controls.Add(this.labelStudentCurrentGroup);
+            this.groupBox7.Controls.Add(this.labelStudentCurrentGroupTitle);
+            this.groupBox7.Controls.Add(this.label17);
+            this.groupBox7.Controls.Add(this.button2GroupSet);
+            this.groupBox7.Location = new System.Drawing.Point(7, 3);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(865, 370);
+            this.groupBox7.TabIndex = 32;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Studentų grupės";
+            // 
+            // dataGridViewStudentToGroup
+            // 
+            this.dataGridViewStudentToGroup.AllowUserToAddRows = false;
+            this.dataGridViewStudentToGroup.AllowUserToDeleteRows = false;
+            this.dataGridViewStudentToGroup.AllowUserToResizeRows = false;
+            this.dataGridViewStudentToGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewStudentToGroup.Location = new System.Drawing.Point(6, 21);
+            this.dataGridViewStudentToGroup.Name = "dataGridViewStudentToGroup";
+            this.dataGridViewStudentToGroup.ReadOnly = true;
+            this.dataGridViewStudentToGroup.RowHeadersVisible = false;
+            this.dataGridViewStudentToGroup.RowHeadersWidth = 51;
+            this.dataGridViewStudentToGroup.RowTemplate.Height = 24;
+            this.dataGridViewStudentToGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewStudentToGroup.Size = new System.Drawing.Size(855, 250);
+            this.dataGridViewStudentToGroup.TabIndex = 12;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(265, 180);
+            this.label18.Location = new System.Drawing.Point(420, 289);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(74, 17);
             this.label18.TabIndex = 16;
             this.label18.Text = "studentas:";
             // 
+            // comboBox2Group
+            // 
+            this.comboBox2Group.FormattingEnabled = true;
+            this.comboBox2Group.Location = new System.Drawing.Point(650, 309);
+            this.comboBox2Group.Name = "comboBox2Group";
+            this.comboBox2Group.Size = new System.Drawing.Size(121, 24);
+            this.comboBox2Group.TabIndex = 14;
+            this.comboBox2Group.SelectedIndexChanged += new System.EventHandler(this.comboBox2Group_SelectedIndexChanged);
+            // 
+            // comboBox2Student
+            // 
+            this.comboBox2Student.FormattingEnabled = true;
+            this.comboBox2Student.Location = new System.Drawing.Point(423, 309);
+            this.comboBox2Student.Name = "comboBox2Student";
+            this.comboBox2Student.Size = new System.Drawing.Size(221, 24);
+            this.comboBox2Student.TabIndex = 13;
+            this.comboBox2Student.SelectedIndexChanged += new System.EventHandler(this.comboBox2Student_SelectedIndexChanged);
+            this.comboBox2Student.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox2Student_KeyPress);
+            // 
+            // labelStudentCurrentGroup
+            // 
+            this.labelStudentCurrentGroup.AutoSize = true;
+            this.labelStudentCurrentGroup.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelStudentCurrentGroup.Location = new System.Drawing.Point(559, 336);
+            this.labelStudentCurrentGroup.Name = "labelStudentCurrentGroup";
+            this.labelStudentCurrentGroup.Size = new System.Drawing.Size(53, 17);
+            this.labelStudentCurrentGroup.TabIndex = 22;
+            this.labelStudentCurrentGroup.Text = "[grupė]";
+            this.labelStudentCurrentGroup.Visible = false;
+            // 
+            // labelStudentCurrentGroupTitle
+            // 
+            this.labelStudentCurrentGroupTitle.AutoSize = true;
+            this.labelStudentCurrentGroupTitle.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.labelStudentCurrentGroupTitle.Location = new System.Drawing.Point(450, 336);
+            this.labelStudentCurrentGroupTitle.Name = "labelStudentCurrentGroupTitle";
+            this.labelStudentCurrentGroupTitle.Size = new System.Drawing.Size(117, 17);
+            this.labelStudentCurrentGroupTitle.TabIndex = 21;
+            this.labelStudentCurrentGroupTitle.Text = "dabartinė grupė: ";
+            this.labelStudentCurrentGroupTitle.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(647, 289);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(49, 17);
+            this.label17.TabIndex = 17;
+            this.label17.Text = "grupė:";
+            // 
             // button2GroupSet
             // 
             this.button2GroupSet.Enabled = false;
-            this.button2GroupSet.Location = new System.Drawing.Point(544, 200);
+            this.button2GroupSet.Location = new System.Drawing.Point(777, 309);
             this.button2GroupSet.Name = "button2GroupSet";
             this.button2GroupSet.Size = new System.Drawing.Size(75, 23);
             this.button2GroupSet.TabIndex = 15;
             this.button2GroupSet.Text = "Priskirti";
             this.button2GroupSet.UseVisualStyleBackColor = true;
-            // 
-            // comboBox2Group
-            // 
-            this.comboBox2Group.Enabled = false;
-            this.comboBox2Group.FormattingEnabled = true;
-            this.comboBox2Group.Location = new System.Drawing.Point(417, 200);
-            this.comboBox2Group.Name = "comboBox2Group";
-            this.comboBox2Group.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2Group.TabIndex = 14;
-            // 
-            // comboBox2Student
-            // 
-            this.comboBox2Student.FormattingEnabled = true;
-            this.comboBox2Student.Location = new System.Drawing.Point(268, 200);
-            this.comboBox2Student.Name = "comboBox2Student";
-            this.comboBox2Student.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2Student.TabIndex = 13;
-            // 
-            // dataGridViewStudentToGroup
-            // 
-            this.dataGridViewStudentToGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewStudentToGroup.Location = new System.Drawing.Point(3, 159);
-            this.dataGridViewStudentToGroup.Name = "dataGridViewStudentToGroup";
-            this.dataGridViewStudentToGroup.RowHeadersWidth = 51;
-            this.dataGridViewStudentToGroup.RowTemplate.Height = 24;
-            this.dataGridViewStudentToGroup.Size = new System.Drawing.Size(240, 150);
-            this.dataGridViewStudentToGroup.TabIndex = 12;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(414, 21);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(60, 17);
-            this.label16.TabIndex = 11;
-            this.label16.Text = "dalykas:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(265, 21);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(76, 17);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "dėstytojas:";
-            // 
-            // button1SubjectDelete
-            // 
-            this.button1SubjectDelete.Enabled = false;
-            this.button1SubjectDelete.Location = new System.Drawing.Point(544, 71);
-            this.button1SubjectDelete.Name = "button1SubjectDelete";
-            this.button1SubjectDelete.Size = new System.Drawing.Size(75, 23);
-            this.button1SubjectDelete.TabIndex = 9;
-            this.button1SubjectDelete.Text = "Trinti";
-            this.button1SubjectDelete.UseVisualStyleBackColor = true;
-            // 
-            // button1SubjectAdd
-            // 
-            this.button1SubjectAdd.Enabled = false;
-            this.button1SubjectAdd.Location = new System.Drawing.Point(544, 41);
-            this.button1SubjectAdd.Name = "button1SubjectAdd";
-            this.button1SubjectAdd.Size = new System.Drawing.Size(75, 23);
-            this.button1SubjectAdd.TabIndex = 8;
-            this.button1SubjectAdd.Text = "Pridėti";
-            this.button1SubjectAdd.UseVisualStyleBackColor = true;
-            this.button1SubjectAdd.Click += new System.EventHandler(this.button1SubjectAdd_Click);
-            // 
-            // comboBox1SubjectDelete
-            // 
-            this.comboBox1SubjectDelete.Enabled = false;
-            this.comboBox1SubjectDelete.FormattingEnabled = true;
-            this.comboBox1SubjectDelete.Location = new System.Drawing.Point(417, 71);
-            this.comboBox1SubjectDelete.Name = "comboBox1SubjectDelete";
-            this.comboBox1SubjectDelete.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1SubjectDelete.TabIndex = 7;
-            // 
-            // comboBox1SubjectAdd
-            // 
-            this.comboBox1SubjectAdd.Enabled = false;
-            this.comboBox1SubjectAdd.FormattingEnabled = true;
-            this.comboBox1SubjectAdd.Location = new System.Drawing.Point(417, 41);
-            this.comboBox1SubjectAdd.Name = "comboBox1SubjectAdd";
-            this.comboBox1SubjectAdd.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1SubjectAdd.TabIndex = 6;
-            // 
-            // comboBox1Lecturer
-            // 
-            this.comboBox1Lecturer.FormattingEnabled = true;
-            this.comboBox1Lecturer.Location = new System.Drawing.Point(268, 41);
-            this.comboBox1Lecturer.Name = "comboBox1Lecturer";
-            this.comboBox1Lecturer.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1Lecturer.TabIndex = 5;
-            this.comboBox1Lecturer.SelectedIndexChanged += new System.EventHandler(this.comboBox1Lecturer_SelectedIndexChanged);
-            this.comboBox1Lecturer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1Lecturer_KeyPress);
-            // 
-            // dataGridViewLecturerToSubject
-            // 
-            this.dataGridViewLecturerToSubject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLecturerToSubject.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewLecturerToSubject.Name = "dataGridViewLecturerToSubject";
-            this.dataGridViewLecturerToSubject.RowHeadersWidth = 51;
-            this.dataGridViewLecturerToSubject.RowTemplate.Height = 24;
-            this.dataGridViewLecturerToSubject.Size = new System.Drawing.Size(240, 150);
-            this.dataGridViewLecturerToSubject.TabIndex = 0;
+            this.button2GroupSet.Click += new System.EventHandler(this.button2GroupSet_Click);
             // 
             // UserControlAdmin
             // 
@@ -908,11 +960,14 @@ namespace AIS
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
             this.Name = "UserControlAdmin";
-            this.Size = new System.Drawing.Size(890, 525);
+            this.Size = new System.Drawing.Size(895, 795);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLecturerToSubject)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -923,10 +978,12 @@ namespace AIS
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSubjectToGroup)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudentToGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLecturerToSubject)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -984,32 +1041,34 @@ namespace AIS
         private System.Windows.Forms.TextBox textBoxNewUserLoginName;
         private System.Windows.Forms.TextBox textBoxNewUserSurname;
         private System.Windows.Forms.TextBox textBoxNewUserName;
-        private System.Windows.Forms.DataGridView dataGridViewLecturerToSubject;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button1SubjectDelete;
-        private System.Windows.Forms.Button button1SubjectAdd;
-        private System.Windows.Forms.ComboBox comboBox1SubjectDelete;
-        private System.Windows.Forms.ComboBox comboBox1SubjectAdd;
-        private System.Windows.Forms.ComboBox comboBox1Lecturer;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox comboBox3Group;
-        private System.Windows.Forms.DataGridView dataGridViewSubjectToGroup;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button button2GroupSet;
         private System.Windows.Forms.ComboBox comboBox2Group;
         private System.Windows.Forms.ComboBox comboBox2Student;
-        private System.Windows.Forms.DataGridView dataGridViewStudentToGroup;
         private System.Windows.Forms.Label labelStudentCurrentGroup;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label labelStudentCurrentGroupTitle;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3Lecturer;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox3Subject;
         private System.Windows.Forms.Button button3SubjectSet;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox textBox3Semester;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.DataGridView dataGridViewStudentToGroup;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.DataGridView dataGridViewSubjectToGroup;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.DataGridView dataGridViewLecturerToSubject;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBox1Lecturer;
+        private System.Windows.Forms.ComboBox comboBox1SubjectAdd;
+        private System.Windows.Forms.ComboBox comboBox1SubjectDelete;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button1SubjectAdd;
+        private System.Windows.Forms.Button button1SubjectDelete;
     }
 }

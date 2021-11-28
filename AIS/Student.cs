@@ -78,12 +78,52 @@ namespace AIS
                                    "AND pazymys.studento_id = '" + id + "'";
             return GetDataTable(query);
         }
-        public DataTable GetStudentsByID(int LecturerId)
+        public DataTable GetStudentsByLecturer(int LecturerId)
         {
-            string query = "SELECT DISTINCT CONCAT(studentas.pavarde, ' ', studentas.vardas) AS vardas " +
+            string query = "SELECT DISTINCT studentas.id, CONCAT(studentas.pavarde, ' ', studentas.vardas, ' | ID:', studentas.id) AS vardas " +
                                    "FROM studentas, grupes_dalykas, destytojas " +
                                    "WHERE grupes_dalykas.grupes_id = studentas.grupes_id AND grupes_dalykas.destytojo_id = '" + LecturerId + "';";
             return GetDataTable(query);
+        }
+        public DataTable GetStudentsByGroup(int GroupId)
+        {
+            string query = "SELECT studentas.id AS 'studento id', CONCAT(studentas.pavarde, ' ', studentas.pavarde) AS 'studento vardas', " +
+                           "grupe.pavadinimas AS 'grupe', studiju_programa.pavadinimas AS 'studiju programa', fakultetas.pavadinimas AS 'fakultetas', " +
+                           "CONCAT(studentas.id, ' | ', studentas.pavarde, ' ', studentas.vardas) AS display FROM studentas " +
+                           "LEFT JOIN grupe ON studentas.grupes_id = grupe.id LEFT JOIN studiju_programa ON grupe.studiju_programos_id = studiju_programa.id " +
+                           "LEFT JOIN fakultetas ON studiju_programa.fakulteto_id = fakultetas.id";
+            if (GroupId != 0)
+                query += " WHERE grupe.id = '" + GroupId + "'";
+            return GetDataTable(query);
+        }
+        public DataTable GetProfile(int StudentId)
+        {
+            string query = "SELECT studentas.id AS 'studento id', CONCAT(studentas.pavarde, ' ', studentas.pavarde) AS 'studento vardas', " +
+                           "grupe.id as 'grupes id', grupe.pavadinimas AS 'grupe' FROM studentas LEFT JOIN grupe ON studentas.grupes_id = grupe.id " +
+                           "WHERE studentas.id = '" + StudentId + "'";
+            return GetDataTable(query);
+        }
+        public void SetGroup(int StudentId, int GroupId)
+        {
+            string Group;
+            if (GroupId != 0)
+                Group = "'" + GroupId + "'";
+            else
+                Group = "NULL";
+            string query = "UPDATE studentas SET studentas.grupes_id = " + Group + " WHERE studentas.id = '" + StudentId + "'";
+            if (DatabaseNonQuery(query) > 0)
+                MessageBox.Show("Studentas priskirtas");
+            if (GroupId != 0)
+            {
+                query = "SELECT grupes_dalykas.id FROM grupes_dalykas WHERE grupes_dalykas.grupes_id = '" + GroupId + "'";
+                DataTable groupSubjectIdList = GetDataTable(query);
+                for (int i = 0; i < groupSubjectIdList.Rows.Count; i++)
+                {
+                    string groupSubjectId = groupSubjectIdList.Rows[i][0].ToString();
+                    query = "INSERT INTO pazymys(pazymys.studento_id, pazymys.grupes_dalyko_id) VALUES('" + StudentId + "', '" + groupSubjectId + "')";
+                    DatabaseNonQuery(query);
+                }
+            }
         }
     }
 }

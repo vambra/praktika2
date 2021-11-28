@@ -34,20 +34,24 @@ namespace AIS
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(3, 12);
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.AutoSize = true;
+            this.panel1.Location = new System.Drawing.Point(1, 17);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(976, 527);
+            this.panel1.Size = new System.Drawing.Size(900, 800);
             this.panel1.TabIndex = 2;
             // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 541);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(902, 818);
             this.Controls.Add(this.panel1);
             this.Name = "FormHome";
             this.Text = "Pagrindinis";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

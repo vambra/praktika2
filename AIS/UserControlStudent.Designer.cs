@@ -103,7 +103,7 @@ namespace AIS
             this.dataGridViewSemester.AllowUserToResizeRows = false;
             this.dataGridViewSemester.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSemester.ColumnHeadersVisible = false;
-            this.dataGridViewSemester.Location = new System.Drawing.Point(3, 111);
+            this.dataGridViewSemester.Location = new System.Drawing.Point(3, 112);
             this.dataGridViewSemester.MultiSelect = false;
             this.dataGridViewSemester.Name = "dataGridViewSemester";
             this.dataGridViewSemester.ReadOnly = true;
@@ -112,7 +112,7 @@ namespace AIS
             this.dataGridViewSemester.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewSemester.RowTemplate.Height = 24;
             this.dataGridViewSemester.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSemester.Size = new System.Drawing.Size(237, 336);
+            this.dataGridViewSemester.Size = new System.Drawing.Size(240, 380);
             this.dataGridViewSemester.TabIndex = 6;
             this.dataGridViewSemester.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSemester_CellClick);
             // 
@@ -123,7 +123,7 @@ namespace AIS
             this.dataGridViewGrades.AllowUserToResizeColumns = false;
             this.dataGridViewGrades.AllowUserToResizeRows = false;
             this.dataGridViewGrades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewGrades.Location = new System.Drawing.Point(246, 111);
+            this.dataGridViewGrades.Location = new System.Drawing.Point(246, 112);
             this.dataGridViewGrades.MultiSelect = false;
             this.dataGridViewGrades.Name = "dataGridViewGrades";
             this.dataGridViewGrades.ReadOnly = true;
@@ -131,7 +131,7 @@ namespace AIS
             this.dataGridViewGrades.RowHeadersWidth = 51;
             this.dataGridViewGrades.RowTemplate.Height = 24;
             this.dataGridViewGrades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewGrades.Size = new System.Drawing.Size(688, 336);
+            this.dataGridViewGrades.Size = new System.Drawing.Size(645, 380);
             this.dataGridViewGrades.TabIndex = 7;
             // 
             // UserControlStudent
@@ -147,7 +147,7 @@ namespace AIS
             this.Controls.Add(this.labelFullName);
             this.Controls.Add(this.label1);
             this.Name = "UserControlStudent";
-            this.Size = new System.Drawing.Size(937, 450);
+            this.Size = new System.Drawing.Size(895, 495);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSemester)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGrades)).EndInit();
             this.ResumeLayout(false);

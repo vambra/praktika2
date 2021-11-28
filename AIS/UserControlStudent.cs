@@ -40,12 +40,10 @@ namespace AIS
                 dataGridViewSemester.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 //load grades
-                dataGridViewGrades.DataSource = user.GetGrades("");
+                string selected = dataGridViewSemester.Rows[0].Cells[0].Value.ToString();
+                dataGridViewGrades.DataSource = user.GetGrades(selected);
                 dataGridViewGrades.Columns[0].Visible = false;
                 dataGridViewGrades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataGridViewGrades.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
-                dataGridViewGrades.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
-                dataGridViewGrades.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
             catch (Exception ex)
             {

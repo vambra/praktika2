@@ -92,6 +92,7 @@ namespace AIS
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxLoginName);
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prisijungimas";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -18,11 +18,14 @@ namespace AIS
             LoadFaculties();
             LoadPrograms();
             LoadGroups();
+            LoadLecturers();
             LoadSubjects();
+            LoadStudents();
+            LoadGroupSubjects();
             comboBoxNewUserType.Items.Add("studentas");
             comboBoxNewUserType.Items.Add("dėstytojas");
             comboBoxNewUserType.SelectedIndex = 0;
-            LoadLecturers();
+            comboBox3Lecturer.SelectedIndex = -1;
         }
 
         private bool StringCharacterCheck(string str)
@@ -43,10 +46,12 @@ namespace AIS
             comboBoxFaculty.DataSource = group.GetFaculties();
             comboBoxFaculty.DisplayMember = "pavadinimas";
             comboBoxFaculty.ValueMember = "id";
+            comboBoxFaculty.SelectedIndex = -1;
 
             comboBoxProgramFaculty.DataSource = group.GetFaculties();
             comboBoxProgramFaculty.DisplayMember = "pavadinimas";
             comboBoxProgramFaculty.ValueMember = "id";
+            comboBoxProgramFaculty.SelectedIndex = -1;
         }
         private void LoadPrograms()
         {
@@ -55,10 +60,12 @@ namespace AIS
             comboBoxProgram.DataSource = group.GetPrograms();
             comboBoxProgram.DisplayMember = "display";
             comboBoxProgram.ValueMember = "id";
+            comboBoxProgram.SelectedIndex = -1;
 
             comboBoxGroupProgram.DataSource = group.GetPrograms();
             comboBoxGroupProgram.DisplayMember = "display";
             comboBoxGroupProgram.ValueMember = "id";
+            comboBoxGroupProgram.SelectedIndex = -1;
         }
         private void LoadGroups()
         {
@@ -67,6 +74,22 @@ namespace AIS
             comboBoxGroup.DataSource = group.GetGroups();
             comboBoxGroup.DisplayMember = "pavadinimas";
             comboBoxGroup.ValueMember = "id";
+            comboBoxGroup.SelectedIndex = -1;
+
+            DataTable list = group.GetGroups();
+            DataRow dr = list.NewRow();
+            dr["id"] = "0";
+            dr["pavadinimas"] = "Jokia grupė";
+            list.Rows.InsertAt(dr, 0);
+            comboBox2Group.DisplayMember = "pavadinimas";
+            comboBox2Group.ValueMember = "id";
+            comboBox2Group.DataSource = list;
+            comboBox2Group.SelectedIndex = 0;
+
+            comboBox3Group.DisplayMember = "pavadinimas";
+            comboBox3Group.ValueMember = "id";
+            comboBox3Group.DataSource = group.GetGroups();
+            comboBox3Group.SelectedIndex = -1;
         }
         private void LoadSubjects()
         {
@@ -75,29 +98,92 @@ namespace AIS
             comboBoxSubject.DataSource = subject.GetSubjects(); ;
             comboBoxSubject.DisplayMember = "display";
             comboBoxSubject.ValueMember = "id";
+            comboBoxSubject.SelectedIndex = -1;
             if (comboBox1SubjectAdd.Enabled == true)
-                comboBox1SubjectAdd.DataSource = subject.GetSubjectsById(int.Parse(comboBox1Lecturer.SelectedValue.ToString()));
-            comboBox1SubjectAdd.DisplayMember = "pavadinimas";
-            comboBox1SubjectAdd.ValueMember = "id";
+            {
+                comboBox1SubjectAdd.DataSource = null;
+                comboBox1SubjectAdd.DataSource = subject.GetSubjectsByLecturerOpposite(int.Parse(comboBox1Lecturer.SelectedValue.ToString()));
+                comboBox1SubjectAdd.DisplayMember = "dalykas";
+                comboBox1SubjectAdd.ValueMember = "id";
+            }
             if (comboBox1SubjectDelete.Enabled == true)
-                comboBox1SubjectDelete.DataSource = subject.GetSubjectsByIdOpposite(int.Parse(comboBox1Lecturer.SelectedValue.ToString()));
-            comboBox1SubjectDelete.DisplayMember = "pavadinimas";
-            comboBox1SubjectDelete.ValueMember = "id";
+            {
+                comboBox1SubjectDelete.DataSource = null;
+                comboBox1SubjectDelete.DataSource = subject.GetSubjectsByLecturer(int.Parse(comboBox1Lecturer.SelectedValue.ToString()));
+                comboBox1SubjectDelete.DisplayMember = "dalykas";
+                comboBox1SubjectDelete.ValueMember = "id";
+            }
+            int LecturerId = 0;
+            if (comboBox1Lecturer.SelectedValue != null)
+                int.TryParse(comboBox1Lecturer.SelectedIndex.ToString(), out LecturerId);
+            dataGridViewLecturerToSubject.DataSource = subject.GetSubjectsByLecturer(LecturerId);
+            dataGridViewLecturerToSubject.Columns["id"].Visible = false;
+            dataGridViewLecturerToSubject.Columns["dalykas"].Visible = false;
+            dataGridViewLecturerToSubject.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewLecturerToSubject.Columns["pavadinimas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            comboBox3Subject.DataSource = subject.GetSubjects(); ;
+            comboBox3Subject.DisplayMember = "display";
+            comboBox3Subject.ValueMember = "id";
+            comboBox3Subject.SelectedIndex = -1;
         }
         private void LoadLecturers()
         {
             Lecturer lecturer = new Lecturer();
-            DataTable list = lecturer.GetLecturers();
+            DataTable list = lecturer.GetLecturersBySubject(0);
             DataRow dr = list.NewRow();
-            dr[1] = "-";
+            dr["id"] = "0";
+            dr["destytojas"] = "-";
             list.Rows.InsertAt(dr, 0);
-            comboBox1Lecturer.DataSource = list;
-            comboBox1Lecturer.DisplayMember = "vardas";
-            comboBox1Lecturer.SelectedIndex = 0;
+            comboBox1Lecturer.DisplayMember = "destytojas";
             comboBox1Lecturer.ValueMember = "id";
+            comboBox1Lecturer.DataSource = list;
+            comboBox1Lecturer.SelectedIndex = 0;
+
+            if (comboBox3Lecturer.Enabled == true)
+            {
+                int selection = 0;
+                if (comboBox3Subject.SelectedValue != null)
+                    int.TryParse(comboBox3Subject.SelectedValue.ToString(), out selection);
+                comboBox3Lecturer.DataSource = null;
+                comboBox3Lecturer.DisplayMember = "destytojas";
+                comboBox3Lecturer.ValueMember = "id";
+                comboBox3Lecturer.DataSource = lecturer.GetLecturersBySubject(selection);
+                if (comboBox3Lecturer.Items.Count > 0)
+                    comboBox3Lecturer.SelectedIndex = 0;
+                else
+                    comboBox3Lecturer.SelectedIndex = -1;
+            }
+        }
+        private void LoadStudents()
+        {
+            Student student = new Student();
+            comboBox2Student.DataSource = student.GetStudentsByGroup(0);
+            comboBox2Student.DisplayMember = "display";
+            comboBox2Student.ValueMember = "studento id";
+            comboBox2Student.SelectedIndex = -1;
+
+            int groupId = 0;
+            if (comboBox2Group.SelectedValue != null)
+                int.TryParse(comboBox2Group.SelectedValue.ToString(), out groupId);
+            dataGridViewStudentToGroup.DataSource = student.GetStudentsByGroup(groupId);
+            dataGridViewStudentToGroup.Columns["display"].Visible = false;
+            dataGridViewStudentToGroup.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        private void LoadGroupSubjects()
+        {
+            int groupId = 0;
+            if (comboBox3Group.SelectedValue != null)
+                int.TryParse(comboBox3Group.SelectedValue.ToString(), out groupId);
+            int subjectId = 0;
+            if(comboBox3Subject.SelectedValue != null)
+                int.TryParse(comboBox3Subject.SelectedValue.ToString(), out subjectId);
+            StudentGroup studentGroup = new StudentGroup();
+            dataGridViewSubjectToGroup.DataSource = studentGroup.GetGroupSubjects(groupId, subjectId);
+            dataGridViewSubjectToGroup.Columns["id"].Visible = false;
+            dataGridViewSubjectToGroup.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
-        //  first tab
         private void buttonFacultyAdd_Click(object sender, EventArgs e)
         {
             try
@@ -368,7 +454,6 @@ namespace AIS
             }
         }
 
-        //second tab
         private void buttonNewUserAdd_Click(object sender, EventArgs e)
         {
             try
@@ -417,6 +502,8 @@ namespace AIS
                     textBoxNewUserSurname.Text = "";
                     textBoxNewUserLoginName.Text = "";
                     textBoxNewUserPassword.Text = "";
+                    LoadStudents();
+                    LoadLecturers();
                 }
                 else
                 {
@@ -429,22 +516,13 @@ namespace AIS
             }
         }
 
-        //third tab
         private void comboBox1Lecturer_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1Lecturer.SelectedIndex > 0)
             {
                 comboBox1SubjectAdd.Enabled = true;
                 comboBox1SubjectDelete.Enabled = true;
-                Subject subject = new Subject();
-                comboBox1SubjectAdd.DataSource = null;
-                comboBox1SubjectAdd.DataSource = subject.GetSubjectsByIdOpposite(int.Parse(comboBox1Lecturer.SelectedValue.ToString()));
-                comboBox1SubjectAdd.DisplayMember = "pavadinimas";
-                comboBox1SubjectAdd.ValueMember = "id";
-                comboBox1SubjectDelete.DataSource = null;
-                comboBox1SubjectDelete.DataSource = subject.GetSubjectsById(int.Parse(comboBox1Lecturer.SelectedValue.ToString()));
-                comboBox1SubjectDelete.DisplayMember = "pavadinimas";
-                comboBox1SubjectDelete.ValueMember = "id";
+                LoadSubjects();
                 if (comboBox1SubjectAdd.Items.Count == 0)
                     button1SubjectAdd.Enabled = false;
                 else
@@ -460,9 +538,11 @@ namespace AIS
                 comboBox1SubjectDelete.Enabled = false;
                 button1SubjectAdd.Enabled = false;
                 button1SubjectDelete.Enabled = false;
+                if (comboBox1Lecturer.SelectedIndex == 0)
+                    LoadSubjects();
             }
         }
-        private void comboBox1Lecturer_KeyPress(object sender, EventArgs e)
+        private void comboBox1Lecturer_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (comboBox1Lecturer.SelectedIndex < 0)
             {
@@ -474,7 +554,161 @@ namespace AIS
         }
         private void button1SubjectAdd_Click(object sender, EventArgs e)
         {
+            Lecturer lecturer = new Lecturer();
+            int LecturerId = int.Parse(comboBox1Lecturer.SelectedValue.ToString());
+            int SubjectId = int.Parse(comboBox1SubjectAdd.SelectedValue.ToString());
+            lecturer.AddSubject(LecturerId, SubjectId);
+            LoadSubjects();
+            if (comboBox1SubjectAdd.Items.Count == 0)
+                button1SubjectAdd.Enabled = false;
+            else
+                button1SubjectAdd.Enabled = true;
+            if (comboBox1SubjectDelete.Items.Count == 0)
+                button1SubjectDelete.Enabled = false;
+            else
+                button1SubjectDelete.Enabled = true;
+        }
 
+        private void button1SubjectDelete_Click(object sender, EventArgs e)
+        {
+            Lecturer lecturer = new Lecturer();
+            int LecturerId = int.Parse(comboBox1Lecturer.SelectedValue.ToString());
+            int SubjectId = int.Parse(comboBox1SubjectDelete.SelectedValue.ToString());
+            lecturer.RemoveSubject(LecturerId, SubjectId);
+            LoadSubjects();
+            if (comboBox1SubjectAdd.Items.Count == 0)
+                button1SubjectAdd.Enabled = false;
+            else
+                button1SubjectAdd.Enabled = true;
+            if (comboBox1SubjectDelete.Items.Count == 0)
+                button1SubjectDelete.Enabled = false;
+            else
+                button1SubjectDelete.Enabled = true;
+        }
+
+        private void comboBox2Student_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedId = 0;
+            if (comboBox2Student.SelectedValue != null)
+                int.TryParse(comboBox2Student.SelectedValue.ToString(), out selectedId);
+            if (selectedId > 0)
+            {
+                Student student = new Student();
+                DataTable profile = student.GetProfile(selectedId);
+                string groupName = profile.Rows[0]["grupe"].ToString();
+                if (groupName == "")
+                    groupName = "nepriskirta";
+                labelStudentCurrentGroup.Text = groupName;
+                labelStudentCurrentGroup.Visible = true;
+                labelStudentCurrentGroupTitle.Visible = true;
+                button2GroupSet.Enabled = true;
+            }
+            else
+            {
+                labelStudentCurrentGroup.Visible = false;
+                labelStudentCurrentGroupTitle.Visible = false;
+                button2GroupSet.Enabled = false;
+            }
+        }
+
+        private void comboBox2Student_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (comboBox2Student.SelectedIndex < 0)
+            {
+                labelStudentCurrentGroup.Visible = false;
+                labelStudentCurrentGroupTitle.Visible = false;
+            }
+        }
+
+        private void comboBox2Group_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = comboBox2Student.SelectedIndex;
+            LoadStudents();
+            comboBox2Student.SelectedIndex = index;
+        }
+
+        private void button2GroupSet_Click(object sender, EventArgs e)
+        {
+            Student student = new Student();
+            student.SetGroup(int.Parse(comboBox2Student.SelectedValue.ToString()), int.Parse(comboBox2Group.SelectedValue.ToString()));
+            comboBox2Student.SelectedIndex = -1;
+            int index = comboBox2Group.SelectedIndex;
+            LoadGroups();
+            comboBox2Group.SelectedIndex = index;
+        }
+
+        private void comboBox3Group_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadGroupSubjects();
+        }
+
+        private void comboBox3Subject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox3Subject.SelectedIndex > -1)
+            {
+                comboBox3Lecturer.Enabled = true;
+                int lecturerId = 0;
+                if (comboBox3Subject.SelectedValue != null)
+                    int.TryParse(comboBox3Subject.SelectedValue.ToString(), out lecturerId);
+                Lecturer lecturer = new Lecturer();
+                comboBox3Lecturer.DataSource = null;
+                comboBox3Lecturer.DisplayMember = "destytojas";
+                comboBox3Lecturer.ValueMember = "id";
+                comboBox3Lecturer.DataSource = lecturer.GetLecturersBySubject(lecturerId);
+                if (comboBox3Lecturer.Items.Count > 0)
+                    comboBox3Lecturer.SelectedIndex = 0;
+                else
+                    comboBox3Lecturer.SelectedIndex = -1;
+                LoadGroupSubjects();
+            }
+            else
+                comboBox3Lecturer.Enabled = false;
+        }
+
+        private void comboBox3Lecturer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox3Lecturer.SelectedIndex > -1 && !String.IsNullOrWhiteSpace(textBox3Semester.Text))
+                button3SubjectSet.Enabled = true;
+            else
+                button3SubjectSet.Enabled = false;
+        }
+
+        private void textBox3Semester_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox3Lecturer.SelectedIndex > -1 && !String.IsNullOrWhiteSpace(textBox3Semester.Text))
+                button3SubjectSet.Enabled = true;
+            else
+                button3SubjectSet.Enabled = false;
+        }
+
+        private void button3SubjectSet_Click(object sender, EventArgs e)
+        {
+            if(int.TryParse(textBox3Semester.Text, out int semester))
+            {
+                if (semester < 1 || semester > 20)
+                {
+                    MessageBox.Show("Prašome įvesti tinkamą semestro numerį");
+                    textBox3Semester.Text = "";
+                }
+                else
+                {
+                    StudentGroup studentGroup = new StudentGroup();
+                    int GroupId = int.Parse(comboBox3Group.SelectedValue.ToString());
+                    int SubjectId = int.Parse(comboBox3Subject.SelectedValue.ToString());
+                    int LecturerId = int.Parse(comboBox3Lecturer.SelectedValue.ToString());
+                    studentGroup.SetSubject(SubjectId, GroupId, LecturerId, semester);
+                    textBox3Semester.Text = "";
+                    comboBox3Lecturer.SelectedIndex = -1;
+                    //comboBox3Subject.SelectedIndex = -1;
+                    //comboBox3Group.SelectedIndex = -1;
+                    LoadGroupSubjects();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Prašome įvesti semestro numerį");
+                textBox3Semester.Text = "";
+            }
         }
     }
 }
