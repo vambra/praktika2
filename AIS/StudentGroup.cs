@@ -151,5 +151,13 @@ namespace AIS
                 query += " AND dalykas.id = '" + SubjectId + "'";
             return GetDataTable(query);
         }
+        public void DeleteGroupSubject(int GroupSubjectId)
+        {
+            string query = "DELETE FROM pazymys WHERE pazymys.grupes_dalyko_id = '" + GroupSubjectId + "'";
+            DatabaseNonQuery(query);
+            query = "DELETE FROM grupes_dalykas WHERE grupes_dalykas.id = '" + GroupSubjectId + "'";
+            if (DatabaseNonQuery(query) > 0)
+                MessageBox.Show("Grupės dalykas ištrintas");
+        }
     }
 }

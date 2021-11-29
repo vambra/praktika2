@@ -90,6 +90,8 @@ namespace AIS
             this.textBoxNewUserName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.button3SubjectDelete = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
             this.dataGridViewSubjectToGroup = new System.Windows.Forms.DataGridView();
             this.label20 = new System.Windows.Forms.Label();
             this.comboBox3Group = new System.Windows.Forms.ComboBox();
@@ -109,6 +111,11 @@ namespace AIS
             this.labelStudentCurrentGroupTitle = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.button2GroupSet = new System.Windows.Forms.Button();
+            this.textBox3SelectedGroup = new System.Windows.Forms.TextBox();
+            this.textBox3SelectedSubject = new System.Windows.Forms.TextBox();
+            this.textBox3SelectedLecturer = new System.Windows.Forms.TextBox();
+            this.textBox3SelectedSemester = new System.Windows.Forms.TextBox();
+            this.label3SelectedGroupSubjectId = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -734,6 +741,13 @@ namespace AIS
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.label3SelectedGroupSubjectId);
+            this.groupBox8.Controls.Add(this.textBox3SelectedSemester);
+            this.groupBox8.Controls.Add(this.textBox3SelectedLecturer);
+            this.groupBox8.Controls.Add(this.textBox3SelectedSubject);
+            this.groupBox8.Controls.Add(this.textBox3SelectedGroup);
+            this.groupBox8.Controls.Add(this.button3SubjectDelete);
+            this.groupBox8.Controls.Add(this.label21);
             this.groupBox8.Controls.Add(this.dataGridViewSubjectToGroup);
             this.groupBox8.Controls.Add(this.label20);
             this.groupBox8.Controls.Add(this.comboBox3Group);
@@ -751,6 +765,26 @@ namespace AIS
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Grupių dalykai";
             // 
+            // button3SubjectDelete
+            // 
+            this.button3SubjectDelete.Enabled = false;
+            this.button3SubjectDelete.Location = new System.Drawing.Point(777, 320);
+            this.button3SubjectDelete.Name = "button3SubjectDelete";
+            this.button3SubjectDelete.Size = new System.Drawing.Size(75, 23);
+            this.button3SubjectDelete.TabIndex = 23;
+            this.button3SubjectDelete.Text = "Trinti";
+            this.button3SubjectDelete.UseVisualStyleBackColor = true;
+            this.button3SubjectDelete.Click += new System.EventHandler(this.button3SubjectDelete_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(23, 300);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(181, 17);
+            this.label21.TabIndex = 30;
+            this.label21.Text = "Pasirinktas grupės dalykas:";
+            // 
             // dataGridViewSubjectToGroup
             // 
             this.dataGridViewSubjectToGroup.AllowUserToAddRows = false;
@@ -758,19 +792,21 @@ namespace AIS
             this.dataGridViewSubjectToGroup.AllowUserToResizeRows = false;
             this.dataGridViewSubjectToGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSubjectToGroup.Location = new System.Drawing.Point(6, 21);
+            this.dataGridViewSubjectToGroup.MultiSelect = false;
             this.dataGridViewSubjectToGroup.Name = "dataGridViewSubjectToGroup";
             this.dataGridViewSubjectToGroup.ReadOnly = true;
             this.dataGridViewSubjectToGroup.RowHeadersVisible = false;
             this.dataGridViewSubjectToGroup.RowHeadersWidth = 51;
             this.dataGridViewSubjectToGroup.RowTemplate.Height = 24;
             this.dataGridViewSubjectToGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSubjectToGroup.Size = new System.Drawing.Size(855, 250);
+            this.dataGridViewSubjectToGroup.Size = new System.Drawing.Size(855, 200);
             this.dataGridViewSubjectToGroup.TabIndex = 23;
+            this.dataGridViewSubjectToGroup.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSubjectToGroup_CellClick);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(38, 282);
+            this.label20.Location = new System.Drawing.Point(23, 240);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(49, 17);
             this.label20.TabIndex = 20;
@@ -779,25 +815,25 @@ namespace AIS
             // comboBox3Group
             // 
             this.comboBox3Group.FormattingEnabled = true;
-            this.comboBox3Group.Location = new System.Drawing.Point(41, 302);
+            this.comboBox3Group.Location = new System.Drawing.Point(26, 260);
             this.comboBox3Group.Name = "comboBox3Group";
-            this.comboBox3Group.Size = new System.Drawing.Size(121, 24);
+            this.comboBox3Group.Size = new System.Drawing.Size(101, 24);
             this.comboBox3Group.TabIndex = 19;
             this.comboBox3Group.SelectedIndexChanged += new System.EventHandler(this.comboBox3Group_SelectedIndexChanged);
             // 
             // comboBox3Subject
             // 
             this.comboBox3Subject.FormattingEnabled = true;
-            this.comboBox3Subject.Location = new System.Drawing.Point(168, 302);
+            this.comboBox3Subject.Location = new System.Drawing.Point(133, 260);
             this.comboBox3Subject.Name = "comboBox3Subject";
-            this.comboBox3Subject.Size = new System.Drawing.Size(371, 24);
+            this.comboBox3Subject.Size = new System.Drawing.Size(351, 24);
             this.comboBox3Subject.TabIndex = 23;
             this.comboBox3Subject.SelectedIndexChanged += new System.EventHandler(this.comboBox3Subject_SelectedIndexChanged);
             // 
             // button3SubjectSet
             // 
             this.button3SubjectSet.Enabled = false;
-            this.button3SubjectSet.Location = new System.Drawing.Point(777, 330);
+            this.button3SubjectSet.Location = new System.Drawing.Point(777, 260);
             this.button3SubjectSet.Name = "button3SubjectSet";
             this.button3SubjectSet.Size = new System.Drawing.Size(75, 23);
             this.button3SubjectSet.TabIndex = 29;
@@ -808,7 +844,7 @@ namespace AIS
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(165, 282);
+            this.label22.Location = new System.Drawing.Point(130, 240);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(60, 17);
             this.label22.TabIndex = 24;
@@ -817,7 +853,7 @@ namespace AIS
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(769, 282);
+            this.label24.Location = new System.Drawing.Point(694, 240);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(77, 17);
             this.label24.TabIndex = 28;
@@ -827,25 +863,25 @@ namespace AIS
             // 
             this.comboBox3Lecturer.Enabled = false;
             this.comboBox3Lecturer.FormattingEnabled = true;
-            this.comboBox3Lecturer.Location = new System.Drawing.Point(545, 302);
+            this.comboBox3Lecturer.Location = new System.Drawing.Point(490, 260);
             this.comboBox3Lecturer.Name = "comboBox3Lecturer";
-            this.comboBox3Lecturer.Size = new System.Drawing.Size(221, 24);
+            this.comboBox3Lecturer.Size = new System.Drawing.Size(201, 24);
             this.comboBox3Lecturer.TabIndex = 25;
             this.comboBox3Lecturer.SelectedIndexChanged += new System.EventHandler(this.comboBox3Lecturer_SelectedIndexChanged);
             // 
             // textBox3Semester
             // 
-            this.textBox3Semester.Location = new System.Drawing.Point(772, 302);
+            this.textBox3Semester.Location = new System.Drawing.Point(697, 260);
             this.textBox3Semester.MaxLength = 2;
             this.textBox3Semester.Name = "textBox3Semester";
-            this.textBox3Semester.Size = new System.Drawing.Size(80, 22);
+            this.textBox3Semester.Size = new System.Drawing.Size(70, 22);
             this.textBox3Semester.TabIndex = 27;
             this.textBox3Semester.TextChanged += new System.EventHandler(this.textBox3Semester_TextChanged);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(542, 282);
+            this.label23.Location = new System.Drawing.Point(487, 240);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(76, 17);
             this.label23.TabIndex = 26;
@@ -953,6 +989,49 @@ namespace AIS
             this.button2GroupSet.Text = "Priskirti";
             this.button2GroupSet.UseVisualStyleBackColor = true;
             this.button2GroupSet.Click += new System.EventHandler(this.button2GroupSet_Click);
+            // 
+            // textBox3SelectedGroup
+            // 
+            this.textBox3SelectedGroup.Enabled = false;
+            this.textBox3SelectedGroup.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBox3SelectedGroup.Location = new System.Drawing.Point(27, 320);
+            this.textBox3SelectedGroup.Name = "textBox3SelectedGroup";
+            this.textBox3SelectedGroup.Size = new System.Drawing.Size(100, 22);
+            this.textBox3SelectedGroup.TabIndex = 32;
+            // 
+            // textBox3SelectedSubject
+            // 
+            this.textBox3SelectedSubject.Enabled = false;
+            this.textBox3SelectedSubject.Location = new System.Drawing.Point(133, 320);
+            this.textBox3SelectedSubject.Name = "textBox3SelectedSubject";
+            this.textBox3SelectedSubject.Size = new System.Drawing.Size(351, 22);
+            this.textBox3SelectedSubject.TabIndex = 33;
+            // 
+            // textBox3SelectedLecturer
+            // 
+            this.textBox3SelectedLecturer.Enabled = false;
+            this.textBox3SelectedLecturer.Location = new System.Drawing.Point(490, 320);
+            this.textBox3SelectedLecturer.Name = "textBox3SelectedLecturer";
+            this.textBox3SelectedLecturer.Size = new System.Drawing.Size(201, 22);
+            this.textBox3SelectedLecturer.TabIndex = 34;
+            // 
+            // textBox3SelectedSemester
+            // 
+            this.textBox3SelectedSemester.Enabled = false;
+            this.textBox3SelectedSemester.Location = new System.Drawing.Point(697, 320);
+            this.textBox3SelectedSemester.Name = "textBox3SelectedSemester";
+            this.textBox3SelectedSemester.Size = new System.Drawing.Size(70, 22);
+            this.textBox3SelectedSemester.TabIndex = 35;
+            // 
+            // label3SelectedGroupSubjectId
+            // 
+            this.label3SelectedGroupSubjectId.AutoSize = true;
+            this.label3SelectedGroupSubjectId.Location = new System.Drawing.Point(24, 345);
+            this.label3SelectedGroupSubjectId.Name = "label3SelectedGroupSubjectId";
+            this.label3SelectedGroupSubjectId.Size = new System.Drawing.Size(199, 17);
+            this.label3SelectedGroupSubjectId.TabIndex = 36;
+            this.label3SelectedGroupSubjectId.Text = "label3SelectedGroupSubjectId";
+            this.label3SelectedGroupSubjectId.Visible = false;
             // 
             // UserControlAdmin
             // 
@@ -1070,5 +1149,12 @@ namespace AIS
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button button1SubjectAdd;
         private System.Windows.Forms.Button button1SubjectDelete;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button button3SubjectDelete;
+        private System.Windows.Forms.TextBox textBox3SelectedSemester;
+        private System.Windows.Forms.TextBox textBox3SelectedLecturer;
+        private System.Windows.Forms.TextBox textBox3SelectedSubject;
+        private System.Windows.Forms.TextBox textBox3SelectedGroup;
+        private System.Windows.Forms.Label label3SelectedGroupSubjectId;
     }
 }

@@ -86,10 +86,15 @@ namespace AIS
             comboBox2Group.DataSource = list;
             comboBox2Group.SelectedIndex = 0;
 
+            list = group.GetGroups();
+            dr = list.NewRow();
+            dr["id"] = "0";
+            dr["pavadinimas"] = "-";
+            list.Rows.InsertAt(dr, 0);
             comboBox3Group.DisplayMember = "pavadinimas";
             comboBox3Group.ValueMember = "id";
-            comboBox3Group.DataSource = group.GetGroups();
-            comboBox3Group.SelectedIndex = -1;
+            comboBox3Group.DataSource = list;
+            comboBox3Group.SelectedIndex = 0;
         }
         private void LoadSubjects()
         {
@@ -122,10 +127,15 @@ namespace AIS
             dataGridViewLecturerToSubject.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewLecturerToSubject.Columns["pavadinimas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            comboBox3Subject.DataSource = subject.GetSubjects(); ;
+            DataTable list = subject.GetSubjects();
+            DataRow dr = list.NewRow();
+            dr["id"] = "0";
+            dr["display"] = "-";
+            list.Rows.InsertAt(dr, 0);
             comboBox3Subject.DisplayMember = "display";
             comboBox3Subject.ValueMember = "id";
-            comboBox3Subject.SelectedIndex = -1;
+            comboBox3Subject.DataSource = list;
+            comboBox3Subject.SelectedIndex = 0;
         }
         private void LoadLecturers()
         {
@@ -640,12 +650,16 @@ namespace AIS
 
         private void comboBox3Group_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBox3Lecturer.SelectedIndex > -1 && !String.IsNullOrWhiteSpace(textBox3Semester.Text) && comboBox3Group.SelectedIndex > 0)
+                button3SubjectSet.Enabled = true;
+            else
+                button3SubjectSet.Enabled = false;
             LoadGroupSubjects();
         }
 
         private void comboBox3Subject_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox3Subject.SelectedIndex > -1)
+            if (comboBox3Subject.SelectedIndex > 0)
             {
                 comboBox3Lecturer.Enabled = true;
                 int lecturerId = 0;
@@ -668,7 +682,7 @@ namespace AIS
 
         private void comboBox3Lecturer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox3Lecturer.SelectedIndex > -1 && !String.IsNullOrWhiteSpace(textBox3Semester.Text))
+            if (comboBox3Lecturer.SelectedIndex > -1 && !String.IsNullOrWhiteSpace(textBox3Semester.Text) && comboBox3Group.SelectedIndex > 0)
                 button3SubjectSet.Enabled = true;
             else
                 button3SubjectSet.Enabled = false;
@@ -676,7 +690,7 @@ namespace AIS
 
         private void textBox3Semester_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox3Lecturer.SelectedIndex > -1 && !String.IsNullOrWhiteSpace(textBox3Semester.Text))
+            if (comboBox3Lecturer.SelectedIndex > -1 && !String.IsNullOrWhiteSpace(textBox3Semester.Text) && comboBox3Group.SelectedIndex > 0)
                 button3SubjectSet.Enabled = true;
             else
                 button3SubjectSet.Enabled = false;
@@ -709,6 +723,44 @@ namespace AIS
             {
                 MessageBox.Show("Prašome įvesti semestro numerį");
                 textBox3Semester.Text = "";
+            }
+        }
+
+        private void dataGridViewSubjectToGroup_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                label3SelectedGroupSubjectId.Text = dataGridViewSubjectToGroup.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                string grupe = dataGridViewSubjectToGroup.Rows[e.RowIndex].Cells["grupe"].Value.ToString();
+                string dalykoKodas = dataGridViewSubjectToGroup.Rows[e.RowIndex].Cells["dalyko kodas"].Value.ToString();
+                string dalykas = dataGridViewSubjectToGroup.Rows[e.RowIndex].Cells["dalykas"].Value.ToString();
+                int destytojoId = int.Parse(dataGridViewSubjectToGroup.Rows[e.RowIndex].Cells["destytojo id"].Value.ToString());
+                string destytojas = dataGridViewSubjectToGroup.Rows[e.RowIndex].Cells["destytojas"].Value.ToString();
+                int semestras = int.Parse(dataGridViewSubjectToGroup.Rows[e.RowIndex].Cells["semestras"].Value.ToString());
+                textBox3SelectedGroup.Text = grupe;
+                textBox3SelectedSubject.Text = dalykoKodas + " | " + dalykas;
+                textBox3SelectedLecturer.Text = destytojoId + " | " + destytojas;
+                textBox3SelectedSemester.Text = semestras.ToString();
+                if (button3SubjectDelete.Enabled == false)
+                    button3SubjectDelete.Enabled = true;
+            }
+        }
+
+        private void button3SubjectDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Ar tikrai norite atskirti " + textBox3SelectedSubject.Text + " nuo " + textBox3SelectedGroup.Text + "?",
+                                                        "", MessageBoxButtons.OKCancel);
+            if (dialogResult == DialogResult.OK)
+            {
+                int id = int.Parse(label3SelectedGroupSubjectId.Text);
+                StudentGroup studentGroup = new StudentGroup();
+                studentGroup.DeleteGroupSubject(id);
+                textBox3SelectedGroup.Text = "";
+                textBox3SelectedSubject.Text = "";
+                textBox3SelectedLecturer.Text = "";
+                textBox3SelectedSemester.Text = "";
+                button3SubjectDelete.Enabled = false;
+                LoadGroupSubjects();
             }
         }
     }
